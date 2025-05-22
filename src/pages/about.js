@@ -106,26 +106,6 @@ export default function About() {
             </p>
           </div>
         </section>
-
-        <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Our Core Pillars</h2>
-          <div className={styles.content}>
-            <div className={styles.blocksContainer}>
-              <div className={styles.block}>
-                <h3>Leadership Development</h3>
-                <p>Nurturing future leaders through comprehensive training and mentorship programs.</p>
-              </div>
-              <div className={styles.block}>
-                <h3>Social Impact</h3>
-                <p>Creating meaningful change through community engagement and social initiatives.</p>
-              </div>
-              <div className={styles.block}>
-                <h3>Innovation & Technology</h3>
-                <p>Promoting technological advancement and innovative thinking among students.</p>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
     </div>
   );
