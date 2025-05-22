@@ -326,17 +326,16 @@ body, html {
     display: flex;
   }
 
-  .auth-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    margin-top: 20px;
-  }
-
-  .login-btn, .signup-btn {
+  .nav-links li {
     width: 100%;
     text-align: center;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    padding: 10px 0;
+    display: block;
+    width: 100%;
   }
 }
 
@@ -1209,6 +1208,18 @@ body, html {
     display: flex;
   }
   
+  .nav-links li {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .nav-links a {
+    font-size: 1.2rem;
+    padding: 10px 0;
+    display: block;
+    width: 100%;
+  }
+  
   .auth-buttons {
     display: flex;
     flex-direction: column;
@@ -1860,17 +1871,16 @@ body, html {
     display: flex;
   }
 
-  .auth-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    margin-top: 20px;
-  }
-
-  .login-btn, .signup-btn {
+  .nav-links li {
     width: 100%;
     text-align: center;
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    padding: 10px 0;
+    display: block;
+    width: 100%;
   }
 }
 

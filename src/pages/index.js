@@ -5,6 +5,7 @@ import Head from "next/head";
 import Navbar from "../components/Navbar";
 import UserIcon from "../components/UserIcon";
 import AboutSection from '../components/AboutSection';
+import { useRouter } from "next/router";
 
 const eventsData = [
   {
@@ -38,6 +39,8 @@ export default function Home() {
   const [eventSlides, setEventSlides] = useState(eventsData.map(() => 0));
   const [isPlaying, setIsPlaying] = useState(eventsData.map(() => true));
   const [carouselIndex, setCarouselIndex] = useState(0);
+
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -93,7 +96,22 @@ export default function Home() {
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = !menuOpen ? 'hidden' : 'unset';
   };
+
+  // Close menu when route changes
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setMenuOpen(false);
+      document.body.style.overflow = 'unset';
+    };
+
+    router.events.on('routeChangeStart', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [router]);
 
   // Helper function to change slide for a specific event
   const changeSlide = (eventIndex, newSlide) => {
@@ -129,7 +147,38 @@ export default function Home() {
       </Head>
 
       {/* Navbar */}
-      <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
+      <nav className="navbar">
+        <div className="logo">
+          <Image src="/logo.png" alt="Think India Logo" width={40} height={40} priority />
+          <span>Think India IIT Roorkee</span>
+        </div>
+
+        <div className="mobile-menu-button" onClick={toggleMenu} role="button" tabIndex={0} aria-label="Toggle menu">
+          <div className={`menu-icon ${menuOpen ? "open" : ""}`}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+
+        <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+          {["home", "events", "team", "contact"].map((id) => (
+            <li key={id}>
+              <Link 
+                href={`#${id}`} 
+                className={activeSection === id ? "active" : ""}
+                onClick={() => {
+                  setActiveSection(id);
+                  setMenuOpen(false);
+                  document.body.style.overflow = 'unset';
+                }}
+              >
+                {id.charAt(0).toUpperCase() + id.slice(1)}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       {/* Hero Section with Tricolor Theme */}
       <section id="home" className="hero-section">
