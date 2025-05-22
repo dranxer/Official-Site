@@ -55,13 +55,11 @@ export default function About() {
 
       <main className={styles.main}>
         <section className={styles.hero}>
-          <div className="section-heading">
-            <h2>About Us</h2>
-            <div className="heading-underline">
-              <div className="saffron-line"></div>
-              <div className="white-line"></div>
-              <div className="green-line"></div>
-            </div>
+          <h1 className={styles.title}>About Us</h1>
+          <div className={styles.headingUnderline}>
+            <div className={styles.saffronLine}></div>
+            <div className={styles.whiteLine}></div>
+            <div className={styles.greenLine}></div>
           </div>
           <p className={styles.subtitle}>Empowering the Future of India</p>
         </section>
