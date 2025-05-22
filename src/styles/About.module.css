@@ -301,6 +301,3 @@
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.8; }
 }
-
-/* Ensure main content is above background */
-.main, nav, .navbar { position: relative; z-index: 2; } 
