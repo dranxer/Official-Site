@@ -337,46 +337,6 @@ body, html {
     display: block;
     width: 100%;
   }
-
-  .nav-links .auth-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-    padding: 0 20px;
-  }
-
-  .nav-links .auth-buttons .login-btn,
-  .nav-links .auth-buttons .signup-btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.1rem;
-    text-align: center;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-  }
-
-  .nav-links .auth-buttons .login-btn {
-    background: transparent;
-    border: 2px solid var(--white);
-    color: var(--white);
-  }
-
-  .nav-links .auth-buttons .login-btn:hover {
-    background: var(--white);
-    color: var(--primary);
-  }
-
-  .nav-links .auth-buttons .signup-btn {
-    background: var(--white);
-    color: var(--primary);
-    border: none;
-  }
-
-  .nav-links .auth-buttons .signup-btn:hover {
-    background: var(--gray-100);
-    color: var(--primary-dark);
-  }
 }
 
 .mobile-menu-button {
@@ -1260,44 +1220,16 @@ body, html {
     width: 100%;
   }
   
-  .nav-links .auth-buttons {
+  .auth-buttons {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin-top: 20px;
-    padding: 0 20px;
-  }
-
-  .nav-links .auth-buttons .login-btn,
-  .nav-links .auth-buttons .signup-btn {
+    gap: 10px;
     width: 100%;
-    padding: 12px;
-    font-size: 1.1rem;
-    text-align: center;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    margin-top: 20px;
   }
-
-  .nav-links .auth-buttons .login-btn {
-    background: transparent;
-    border: 2px solid var(--white);
-    color: var(--white);
-  }
-
-  .nav-links .auth-buttons .login-btn:hover {
-    background: var(--white);
-    color: var(--primary);
-  }
-
-  .nav-links .auth-buttons .signup-btn {
-    background: var(--white);
-    color: var(--primary);
-    border: none;
-  }
-
-  .nav-links .auth-buttons .signup-btn:hover {
-    background: var(--gray-100);
-    color: var(--primary-dark);
+  
+  .login-btn, .signup-btn {
+    width: 100%;
   }
   
   .hero-content {
