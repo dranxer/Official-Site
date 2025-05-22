@@ -177,6 +177,20 @@ export default function Home() {
               </Link>
             </li>
           ))}
+          <li className="auth-buttons">
+            <Link href="/login" className="login-btn" onClick={() => {
+              setMenuOpen(false);
+              document.body.style.overflow = 'unset';
+            }}>
+              Login
+            </Link>
+            <Link href="/signup" className="signup-btn" onClick={() => {
+              setMenuOpen(false);
+              document.body.style.overflow = 'unset';
+            }}>
+              Sign Up
+            </Link>
+          </li>
         </ul>
       </nav>
 
