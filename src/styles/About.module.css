@@ -93,35 +93,6 @@
   z-index: 2;
 }
 
-.headingUnderline {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin: 0 auto 2rem;
-  width: 150px;
-}
-
-.saffronLine,
-.whiteLine,
-.greenLine {
-  height: 4px;
-  flex: 1;
-  border-radius: 2px;
-}
-
-.saffronLine {
-  background-color: #FF9933;
-}
-
-.whiteLine {
-  background-color: white;
-  box-shadow: 0 0 3px rgba(0,0,0,0.2);
-}
-
-.greenLine {
-  background-color: #138808;
-}
-
 .subtitle {
   font-size: 1.5rem;
   opacity: 0.95;

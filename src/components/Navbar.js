@@ -10,9 +10,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
   const { user, loading } = useCurrentUser();
   const router = useRouter();
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const handleLogin = () => {
     router.push('/login');
@@ -32,30 +30,31 @@ export default function Navbar({ activeSection, setActiveSection }) {
         </div>
         <span>Think India</span>
       </div>
-      <button className="mobile-menu-button" onClick={toggleMenu} aria-label="Toggle menu">
+      <div className="mobile-menu-button" onClick={toggleMenu}>
         <div className={`menu-icon ${menuOpen ? "open" : ""}`}>
           <span></span>
           <span></span>
           <span></span>
         </div>
-      </button>
+      </div>
       <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
         <li>
-          <Link href="/" onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link href="/" className={activeSection === "home" ? "active" : ""}>Home</Link>
         </li>
         <li>
-          <Link href="/about" onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="#about" className={activeSection === "about" ? "active" : ""}>About</Link>
         </li>
         <li>
-          <Link href="/internships" onClick={() => setMenuOpen(false)}>Internships</Link>
+          <Link href="/internships">Internships</Link>
         </li>
         <li>
-          <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
+          <Link href="/blog">Blog</Link>
         </li>
         {["events", "team", "contact"].map((id) => (
           <li key={id}>
             <Link 
               href={`#${id}`} 
+              className={activeSection === id ? "active" : ""}
               onClick={() => {
                 setActiveSection(id);
                 setMenuOpen(false);
