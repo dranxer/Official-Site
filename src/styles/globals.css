@@ -2380,3 +2380,9 @@ document.addEventListener('DOMContentLoaded', function() {
 .slide-dot {
   display: none;
 }
+
+/* Global z-index management */
+main, nav, .navbar {
+  position: relative;
+  z-index: 2;
+}
