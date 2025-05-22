@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import UserIcon from "./UserIcon";
 import useCurrentUser from "../hooks/useCurrentUser";
 import { useRouter } from "next/router";
@@ -10,16 +10,35 @@ export default function Navbar({ activeSection, setActiveSection }) {
   const { user, loading } = useCurrentUser();
   const router = useRouter();
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = !menuOpen ? 'hidden' : 'unset';
+  };
+
+  // Close menu when route changes
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setMenuOpen(false);
+      document.body.style.overflow = 'unset';
+    };
+
+    router.events.on('routeChangeStart', handleRouteChange);
+    return () => {
+      router.events.off('routeChangeStart', handleRouteChange);
+    };
+  }, [router]);
 
   const handleLogin = () => {
     router.push('/login');
     setMenuOpen(false);
+    document.body.style.overflow = 'unset';
   };
 
   const handleSignup = () => {
     router.push('/signup');
     setMenuOpen(false);
+    document.body.style.overflow = 'unset';
   };
 
   return (
@@ -30,7 +49,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
         </div>
         <span>Think India</span>
       </div>
-      <div className="mobile-menu-button" onClick={toggleMenu}>
+      <div className="mobile-menu-button" onClick={toggleMenu} role="button" tabIndex={0} aria-label="Toggle menu">
         <div className={`menu-icon ${menuOpen ? "open" : ""}`}>
           <span></span>
           <span></span>
@@ -39,16 +58,16 @@ export default function Navbar({ activeSection, setActiveSection }) {
       </div>
       <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
         <li>
-          <Link href="/" className={activeSection === "home" ? "active" : ""}>Home</Link>
+          <Link href="/" className={activeSection === "home" ? "active" : ""} onClick={() => setMenuOpen(false)}>Home</Link>
         </li>
         <li>
-          <Link href="#about" className={activeSection === "about" ? "active" : ""}>About</Link>
+          <Link href="#about" className={activeSection === "about" ? "active" : ""} onClick={() => setMenuOpen(false)}>About</Link>
         </li>
         <li>
-          <Link href="/internships">Internships</Link>
+          <Link href="/internships" onClick={() => setMenuOpen(false)}>Internships</Link>
         </li>
         <li>
-          <Link href="/blog">Blog</Link>
+          <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
         </li>
         {["events", "team", "contact"].map((id) => (
           <li key={id}>
@@ -58,6 +77,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
               onClick={() => {
                 setActiveSection(id);
                 setMenuOpen(false);
+                document.body.style.overflow = 'unset';
               }}
             >
               {id.charAt(0).toUpperCase() + id.slice(1)}

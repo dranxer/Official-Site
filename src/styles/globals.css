@@ -302,17 +302,24 @@ body, html {
     padding: 1rem;
   }
 
+  .mobile-menu-button {
+    display: block;
+    z-index: 1001;
+  }
+
   .nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    background: #0a1033;
-    padding: 20px;
+    height: 100vh;
+    background: rgba(10, 16, 51, 0.98);
+    padding: 80px 20px 20px;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     z-index: 1000;
+    transition: all 0.3s ease-in-out;
   }
 
   .nav-links.active {
@@ -324,6 +331,7 @@ body, html {
     flex-direction: column;
     gap: 10px;
     width: 100%;
+    margin-top: 20px;
   }
 
   .login-btn, .signup-btn {
@@ -335,12 +343,16 @@ body, html {
 .mobile-menu-button {
   display: none;
   cursor: pointer;
+  padding: 10px;
+  z-index: 1001;
 }
 
 .menu-icon {
   width: 30px;
   height: 22px;
   position: relative;
+  transform: rotate(0deg);
+  transition: .5s ease-in-out;
 }
 
 .menu-icon span {
@@ -1180,14 +1192,17 @@ body, html {
   
   .nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    background: var(--navy);
-    padding: 20px;
+    height: 100vh;
+    background: rgba(10, 16, 51, 0.98);
+    padding: 80px 20px 20px;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
   }
   
   .nav-links.active {
@@ -1199,6 +1214,7 @@ body, html {
     flex-direction: column;
     gap: 10px;
     width: 100%;
+    margin-top: 20px;
   }
   
   .login-btn, .signup-btn {
@@ -1827,14 +1843,17 @@ body, html {
 
   .nav-links {
     display: none;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    background: var(--navy);
-    padding: 20px;
+    height: 100vh;
+    background: rgba(10, 16, 51, 0.98);
+    padding: 80px 20px 20px;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
+    z-index: 1000;
+    transition: all 0.3s ease-in-out;
   }
 
   .nav-links.active {
@@ -1846,10 +1865,12 @@ body, html {
     flex-direction: column;
     gap: 10px;
     width: 100%;
+    margin-top: 20px;
   }
 
   .login-btn, .signup-btn {
     width: 100%;
+    text-align: center;
   }
 }
 
