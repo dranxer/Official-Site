@@ -5,7 +5,7 @@ import UserIcon from "./UserIcon";
 import useCurrentUser from "../hooks/useCurrentUser";
 import { useRouter } from "next/router";
 
-export default function Navbar({ activeSection, setActiveSection }) {
+const Navbar = ({ activeSection, setActiveSection }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { user, loading } = useCurrentUser();
@@ -13,7 +13,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -36,57 +36,41 @@ export default function Navbar({ activeSection, setActiveSection }) {
 
   return (
     <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
-      <div className="logo">
-        <div className="circular-logo">
-          <Image src="/think-india-logo.png" alt="Think India Logo" width={40} height={40} priority />
-        </div>
-        <span>Think India</span>
-      </div>
-      <div className={`mobile-menu-button ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+      <button 
+        className={`mobile-menu-button ${isMenuOpen ? 'active' : ''}`}
+        onClick={toggleMenu}
+        aria-label="Toggle menu"
+      >
         <div className="menu-icon">
           <span></span>
           <span></span>
           <span></span>
         </div>
+      </button>
+
+      <div className="logo">
+        <Image src="/think-india-logo.png" alt="Think India Logo" width={40} height={40} />
+        <span>Think India</span>
       </div>
-      <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-        <li>
-          <Link href="/" className={activeSection === "home" ? "active" : ""}>Home</Link>
-        </li>
-        <li>
-          <Link href="#about" className={activeSection === "about" ? "active" : ""}>About</Link>
-        </li>
-        <li>
-          <Link href="/internships">Internships</Link>
-        </li>
-        <li>
-          <Link href="/blog">Blog</Link>
-        </li>
-        {["events", "team", "contact"].map((id) => (
-          <li key={id}>
-            <Link 
-              href={`#${id}`} 
-              className={activeSection === id ? "active" : ""}
-              onClick={() => {
-                setActiveSection(id);
-                setIsMenuOpen(false);
-              }}
-            >
-              {id.charAt(0).toUpperCase() + id.slice(1)}
-            </Link>
-          </li>
-        ))}
-        <li className="auth-buttons">
-          {loading ? null : user ? (
-            <UserIcon />
-          ) : (
-            <>
-              <button onClick={handleLogin} className="login-btn" type="button">Login</button>
-              <button onClick={handleSignup} className="signup-btn" type="button">Sign Up</button>
-            </>
-          )}
-        </li>
-      </ul>
+
+      <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
+        <button className="close-menu" onClick={toggleMenu} aria-label="Close menu">
+          <span className="sr-only">Close menu</span>
+        </button>
+        
+        <Link href="/" onClick={toggleMenu}>Home</Link>
+        <Link href="/about" onClick={toggleMenu}>About</Link>
+        <Link href="/events" onClick={toggleMenu}>Events</Link>
+        <Link href="/members" onClick={toggleMenu}>Members</Link>
+        <Link href="/contact" onClick={toggleMenu}>Contact</Link>
+
+        <div className="auth-buttons">
+          <Link href="/login" className="login-btn" onClick={toggleMenu}>Login</Link>
+          <Link href="/signup" className="signup-btn" onClick={toggleMenu}>Sign Up</Link>
+        </div>
+      </div>
     </nav>
   );
-} 
+};
+
+export default Navbar; 

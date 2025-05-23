@@ -309,24 +309,94 @@ body, html {
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
-  .navbar.scrolled {
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    padding: 0.6rem 1rem;
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo span {
+    font-size: 1.2rem;
+  }
+
+  .mobile-menu-button {
+    display: block;
+    z-index: 1001;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-right: auto;
+  }
+
+  .menu-icon {
+    width: 24px;
+    height: 20px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+  }
+
+  .menu-icon span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: white;
+    border-radius: 2px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+  }
+
+  .menu-icon span:nth-child(1) {
+    top: 0px;
+  }
+
+  .menu-icon span:nth-child(2) {
+    top: 9px;
+  }
+
+  .menu-icon span:nth-child(3) {
+    top: 18px;
+  }
+
+  .mobile-menu-button.active .menu-icon span:nth-child(1) {
+    top: 9px;
+    transform: rotate(45deg);
+  }
+
+  .mobile-menu-button.active .menu-icon span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-button.active .menu-icon span:nth-child(3) {
+    top: 9px;
+    transform: rotate(-45deg);
   }
 
   .nav-links {
     display: none;
     position: fixed;
-    top: 60px;
+    top: 0;
     left: 0;
     width: 100%;
-    height: calc(100vh - 60px);
+    height: 100vh;
     background: rgba(37, 99, 235, 0.98);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    padding: 2rem;
+    padding: 5rem 2rem 2rem 2rem;
     flex-direction: column;
     gap: 1.5rem;
     z-index: 999;
@@ -341,11 +411,13 @@ body, html {
 
   .nav-links a {
     font-size: 1.2rem;
-    padding: 0.8rem 1rem;
+    padding: 1rem;
     width: 100%;
     text-align: center;
     border-radius: 8px;
     transition: all 0.3s ease;
+    color: white;
+    font-weight: 500;
   }
 
   .nav-links a:hover {
@@ -357,7 +429,7 @@ body, html {
     flex-direction: column;
     gap: 1rem;
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 2rem;
     padding: 1rem;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
@@ -375,153 +447,43 @@ body, html {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
-  .mobile-menu-button {
-    display: block;
-    z-index: 1001;
-    padding: 0.5rem;
-    border-radius: 8px;
+  /* Add a close button for the mobile menu */
+  .close-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
     transition: all 0.3s ease;
   }
 
-  .mobile-menu-button:hover {
-    background: rgba(255, 255, 255, 0.1);
+  .close-menu:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
   }
 
-  .menu-icon {
-    width: 30px;
-    height: 24px;
-    position: relative;
-    transform: rotate(0deg);
-    transition: 0.5s ease-in-out;
-  }
-
-  .menu-icon span {
-    display: block;
+  .close-menu::before,
+  .close-menu::after {
+    content: '';
     position: absolute;
-    height: 3px;
-    width: 100%;
+    width: 20px;
+    height: 2px;
     background: white;
-    border-radius: 3px;
-    opacity: 1;
-    left: 0;
-    transform: rotate(0deg);
-    transition: 0.25s ease-in-out;
+    border-radius: 2px;
   }
 
-  .menu-icon span:nth-child(1) {
-    top: 0px;
+  .close-menu::before {
+    transform: rotate(45deg);
   }
 
-  .menu-icon span:nth-child(2) {
-    top: 10px;
-  }
-
-  .menu-icon span:nth-child(3) {
-    top: 20px;
-  }
-
-  .mobile-menu-button.active .menu-icon span:nth-child(1) {
-    top: 10px;
-    transform: rotate(135deg);
-  }
-
-  .mobile-menu-button.active .menu-icon span:nth-child(2) {
-    opacity: 0;
-    left: -60px;
-  }
-
-  .mobile-menu-button.active .menu-icon span:nth-child(3) {
-    top: 10px;
-    transform: rotate(-135deg);
-  }
-
-  /* Hero Section Mobile Optimization */
-  .hero-section {
-    height: 100vh;
-    padding: 0 1rem;
-    text-align: center;
-    margin-top: 60px;
-  }
-
-  .hero-content {
-    width: 100%;
-    max-width: 100%;
-    padding: 2rem 1rem;
-  }
-
-  .motto-container {
-    width: 100%;
-    max-width: 100%;
-    padding: 2rem;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  }
-
-  .motto-heading {
-    font-size: 2.2rem;
-    line-height: 1.2;
-    margin-bottom: 1rem;
-  }
-
-  .motto-subheading {
-    font-size: 1.3rem;
-    margin-top: 1rem;
-    color: var(--primary);
-  }
-
-  /* Events Section Mobile Optimization */
-  .events-section {
-    padding: 4rem 1rem;
-  }
-
-  .event-card {
-    width: 100%;
-    margin: 1rem 0;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Members Section Mobile Optimization */
-  .members-section {
-    padding: 4rem 1rem;
-  }
-
-  .member-card {
-    width: 100%;
-    max-width: 300px;
-    margin: 1rem auto;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  /* Contact Section Mobile Optimization */
-  .contact-section {
-    padding: 4rem 1rem;
-  }
-
-  .contact-form {
-    width: 100%;
-    padding: 1.5rem;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  }
-
-  .contact-info {
-    padding: 1.5rem;
-    margin-top: 2rem;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  .close-menu::after {
+    transform: rotate(-45deg);
   }
 }
 
@@ -1880,42 +1842,191 @@ body, html {
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
   .navbar {
-    padding: 1rem;
+    padding: 0.8rem 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(37, 99, 235, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .logo span {
+    font-size: 1.2rem;
+  }
+
+  .mobile-menu-button {
+    display: block;
+    z-index: 1001;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    margin-right: auto;
+  }
+
+  .menu-icon {
+    width: 24px;
+    height: 20px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+  }
+
+  .menu-icon span {
+    display: block;
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    background: white;
+    border-radius: 2px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+  }
+
+  .menu-icon span:nth-child(1) {
+    top: 0px;
+  }
+
+  .menu-icon span:nth-child(2) {
+    top: 9px;
+  }
+
+  .menu-icon span:nth-child(3) {
+    top: 18px;
+  }
+
+  .mobile-menu-button.active .menu-icon span:nth-child(1) {
+    top: 9px;
+    transform: rotate(45deg);
+  }
+
+  .mobile-menu-button.active .menu-icon span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-menu-button.active .menu-icon span:nth-child(3) {
+    top: 9px;
+    transform: rotate(-45deg);
   }
 
   .nav-links {
     display: none;
     position: fixed;
-    top: 70px;
+    top: 0;
     left: 0;
     width: 100%;
-    background: var(--navy);
-    padding: 20px;
+    height: 100vh;
+    background: rgba(37, 99, 235, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 5rem 2rem 2rem 2rem;
     flex-direction: column;
-    gap: 15px;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    gap: 1.5rem;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .nav-links.active {
     display: flex;
+    transform: translateX(0);
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    color: white;
+    font-weight: 500;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
   }
 
   .auth-buttons {
-    display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 1rem;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 2rem;
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .login-btn, .signup-btn {
     width: 100%;
-    text-align: center;
-    padding: 12px 20px;
-    font-size: 16px;
-    opacity: 1;
-    pointer-events: auto;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .login-btn:hover, .signup-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  /* Add a close button for the mobile menu */
+  .close-menu {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .close-menu:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+  }
+
+  .close-menu::before,
+  .close-menu::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 2px;
+    background: white;
+    border-radius: 2px;
+  }
+
+  .close-menu::before {
+    transform: rotate(45deg);
+  }
+
+  .close-menu::after {
+    transform: rotate(-45deg);
   }
 }
 
