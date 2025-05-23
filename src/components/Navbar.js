@@ -12,6 +12,16 @@ export default function Navbar({ activeSection, setActiveSection }) {
   const drawerRef = useRef(null);
   const buttonRef = useRef(null);
 
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', { method: 'POST' });
+      router.push('/');
+      router.reload();
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
+
   const toggleDrawer = () => {
     setDrawerOpen(!drawerOpen);
     document.body.style.overflow = !drawerOpen ? 'hidden' : 'unset';
@@ -103,7 +113,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
               </span>
             </div>
           </div>
-          <button className="drawer-signout" onClick={() => {/* sign out logic */}}>
+          <button className="drawer-signout" onClick={handleLogout}>
             {user ? 'Sign out' : ''}
           </button>
         </div>
@@ -118,6 +128,22 @@ export default function Navbar({ activeSection, setActiveSection }) {
                 </Link>
               </li>
             ))}
+            {!user && (
+              <>
+                <li>
+                  <Link href="/login" onClick={closeDrawer} className="drawer-menu-link">
+                    <span className="drawer-menu-icon">🔑</span>
+                    <span className="drawer-menu-label">Login</span>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/signup" onClick={closeDrawer} className="drawer-menu-link">
+                    <span className="drawer-menu-icon">✍️</span>
+                    <span className="drawer-menu-label">Sign Up</span>
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
       </aside>
