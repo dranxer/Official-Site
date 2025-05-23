@@ -1809,33 +1809,60 @@
 @media (max-width: 768px) {
   .timelineModernWrapper {
     padding: 2rem 1rem;
+    margin-top: 60px;
   }
 
   .timelineModernCard {
     min-width: 120px;
     max-width: 160px;
-    padding: 1rem;
+    padding: 1.2rem;
     font-size: 0.9rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .timelineModernCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
   }
 
   .timelineModernConnectorHorizontal {
     width: 15px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--primary-light));
+    border-radius: 2px;
   }
 
   .timelineModernVerticalConnector {
     left: calc(50% + 140px);
     height: 60px;
     top: 60px;
+    background: linear-gradient(180deg, var(--primary), var(--primary-light));
+    border-radius: 2px;
   }
 
   .timelineModernTitle {
     font-size: 1.1rem;
     margin-bottom: 0.5rem;
+    color: var(--primary);
+    font-weight: 600;
   }
 
   .timelineModernDescription {
     font-size: 0.85rem;
     line-height: 1.4;
+    color: var(--gray-700);
+  }
+
+  .timelineModernDate {
+    font-size: 0.8rem;
+    color: var(--primary-light);
+    margin-bottom: 0.5rem;
+    font-weight: 500;
   }
 }
 
@@ -1847,8 +1874,9 @@
   .timelineModernCard {
     min-width: 100px;
     max-width: 140px;
-    padding: 0.8rem;
+    padding: 1rem;
     font-size: 0.8rem;
+    border-radius: 12px;
   }
 
   .timelineModernConnectorHorizontal {

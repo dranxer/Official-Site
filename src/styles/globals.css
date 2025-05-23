@@ -305,7 +305,9 @@ body, html {
     left: 0;
     right: 0;
     z-index: 1000;
-    background: var(--navy);
+    background: rgba(37, 99, 235, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: all 0.3s ease;
   }
 
@@ -321,13 +323,15 @@ body, html {
     left: 0;
     width: 100%;
     height: calc(100vh - 60px);
-    background: var(--navy);
+    background: rgba(37, 99, 235, 0.98);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 2rem;
     flex-direction: column;
     gap: 1.5rem;
     z-index: 999;
     transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .nav-links.active {
@@ -337,9 +341,16 @@ body, html {
 
   .nav-links a {
     font-size: 1.2rem;
-    padding: 0.5rem 0;
+    padding: 0.8rem 1rem;
     width: 100%;
     text-align: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(5px);
   }
 
   .auth-buttons {
@@ -347,17 +358,33 @@ body, html {
     gap: 1rem;
     width: 100%;
     margin-top: 1rem;
+    padding: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .login-btn, .signup-btn {
     width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
+    padding: 1rem;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .login-btn:hover, .signup-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   .mobile-menu-button {
     display: block;
     z-index: 1001;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu-button:hover {
+    background: rgba(255, 255, 255, 0.1);
   }
 
   .menu-icon {
@@ -413,63 +440,88 @@ body, html {
     height: 100vh;
     padding: 0 1rem;
     text-align: center;
+    margin-top: 60px;
   }
 
   .hero-content {
     width: 100%;
     max-width: 100%;
-    padding: 0 1rem;
+    padding: 2rem 1rem;
   }
 
   .motto-container {
     width: 100%;
     max-width: 100%;
+    padding: 2rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 
   .motto-heading {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     line-height: 1.2;
+    margin-bottom: 1rem;
   }
 
   .motto-subheading {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-top: 1rem;
+    color: var(--primary);
   }
 
   /* Events Section Mobile Optimization */
   .events-section {
-    padding: 3rem 1rem;
+    padding: 4rem 1rem;
   }
 
   .event-card {
     width: 100%;
     margin: 1rem 0;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 
   /* Members Section Mobile Optimization */
   .members-section {
-    padding: 3rem 1rem;
+    padding: 4rem 1rem;
   }
 
   .member-card {
     width: 100%;
     max-width: 300px;
     margin: 1rem auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 
   /* Contact Section Mobile Optimization */
   .contact-section {
-    padding: 3rem 1rem;
+    padding: 4rem 1rem;
   }
 
   .contact-form {
     width: 100%;
     padding: 1.5rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 
   .contact-info {
     padding: 1.5rem;
     margin-top: 2rem;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
 }
 
