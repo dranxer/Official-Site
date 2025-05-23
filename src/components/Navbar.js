@@ -54,10 +54,6 @@ const Navbar = ({ activeSection, setActiveSection }) => {
       </div>
 
       <div className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
-        <button className="close-menu" onClick={toggleMenu} aria-label="Close menu">
-          <span className="sr-only">Close menu</span>
-        </button>
-        
         <Link href="/" onClick={toggleMenu}>Home</Link>
         <Link href="/about" onClick={toggleMenu}>About</Link>
         <Link href="/events" onClick={toggleMenu}>Events</Link>
