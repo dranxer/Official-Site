@@ -296,10 +296,63 @@ body, html {
   left: 100%;
 }
 
-/* Mobile Responsive Styles */
+/* Enhanced Mobile Responsive Styles */
 @media (max-width: 768px) {
   .navbar {
-    padding: 1rem;
+    padding: 0.8rem 1rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: var(--navy);
+    transition: all 0.3s ease;
+  }
+
+  .navbar.scrolled {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 0.6rem 1rem;
+  }
+
+  .nav-links {
+    display: none;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: var(--navy);
+    padding: 2rem;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 999;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .nav-links.active {
+    display: flex;
+    transform: translateX(0);
+  }
+
+  .nav-links a {
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+    width: 100%;
+    text-align: center;
+  }
+
+  .auth-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .login-btn, .signup-btn {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
   }
 
   .mobile-menu-button {
@@ -307,92 +360,145 @@ body, html {
     z-index: 1001;
   }
 
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 0;
+  .menu-icon {
+    width: 30px;
+    height: 24px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+  }
+
+  .menu-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: white;
+    border-radius: 3px;
+    opacity: 1;
     left: 0;
-    width: 100%;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+  }
+
+  .menu-icon span:nth-child(1) {
+    top: 0px;
+  }
+
+  .menu-icon span:nth-child(2) {
+    top: 10px;
+  }
+
+  .menu-icon span:nth-child(3) {
+    top: 20px;
+  }
+
+  .mobile-menu-button.active .menu-icon span:nth-child(1) {
+    top: 10px;
+    transform: rotate(135deg);
+  }
+
+  .mobile-menu-button.active .menu-icon span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+  }
+
+  .mobile-menu-button.active .menu-icon span:nth-child(3) {
+    top: 10px;
+    transform: rotate(-135deg);
+  }
+
+  /* Hero Section Mobile Optimization */
+  .hero-section {
     height: 100vh;
-    background: rgba(10, 16, 51, 0.98);
-    padding: 80px 20px 20px;
-    flex-direction: column;
-    gap: 20px;
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .nav-links.active {
-    display: flex;
-  }
-
-  .auth-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    margin-top: 20px;
-  }
-
-  .login-btn, .signup-btn {
-    width: 100%;
+    padding: 0 1rem;
     text-align: center;
   }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+
+  .motto-container {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .motto-heading {
+    font-size: 2.5rem;
+    line-height: 1.2;
+  }
+
+  .motto-subheading {
+    font-size: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  /* Events Section Mobile Optimization */
+  .events-section {
+    padding: 3rem 1rem;
+  }
+
+  .event-card {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  /* Members Section Mobile Optimization */
+  .members-section {
+    padding: 3rem 1rem;
+  }
+
+  .member-card {
+    width: 100%;
+    max-width: 300px;
+    margin: 1rem auto;
+  }
+
+  /* Contact Section Mobile Optimization */
+  .contact-section {
+    padding: 3rem 1rem;
+  }
+
+  .contact-form {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .contact-info {
+    padding: 1.5rem;
+    margin-top: 2rem;
+  }
 }
 
-.mobile-menu-button {
-  display: none;
-  cursor: pointer;
-  padding: 10px;
-  z-index: 1001;
-}
+/* Additional Mobile Breakpoint */
+@media (max-width: 480px) {
+  .motto-heading {
+    font-size: 2rem;
+  }
 
-.menu-icon {
-  width: 30px;
-  height: 22px;
-  position: relative;
-  transform: rotate(0deg);
-  transition: .5s ease-in-out;
-}
+  .motto-subheading {
+    font-size: 1.2rem;
+  }
 
-.menu-icon span {
-  display: block;
-  position: absolute;
-  height: 3px;
-  width: 100%;
-  background: white;
-  border-radius: 3px;
-  opacity: 1;
-  left: 0;
-  transform: rotate(0deg);
-  transition: .25s ease-in-out;
-}
+  .section-heading h2 {
+    font-size: 1.8rem;
+  }
 
-.menu-icon span:nth-child(1) {
-  top: 0px;
-}
+  .event-card {
+    padding: 1rem;
+  }
 
-.menu-icon span:nth-child(2) {
-  top: 9px;
-}
+  .member-card {
+    padding: 1rem;
+  }
 
-.menu-icon span:nth-child(3) {
-  top: 18px;
-}
-
-.menu-icon.open span:nth-child(1) {
-  top: 9px;
-  transform: rotate(135deg);
-}
-
-.menu-icon.open span:nth-child(2) {
-  opacity: 0;
-  left: -60px;
-}
-
-.menu-icon.open span:nth-child(3) {
-  top: 9px;
-  transform: rotate(-135deg);
+  .contact-form input,
+  .contact-form textarea {
+    padding: 0.8rem;
+  }
 }
 
 /* Hero Section with Tricolor Theme */
@@ -1181,122 +1287,6 @@ body, html {
   }
 }
 
-@media (max-width: 768px) {
-  .navbar {
-    padding: 1rem;
-  }
-  
-  .mobile-menu-button {
-    display: block;
-  }
-  
-  .nav-links {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100vh;
-    background: rgba(10, 16, 51, 0.98);
-    padding: 80px 20px 20px;
-    flex-direction: column;
-    gap: 20px;
-    z-index: 1000;
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .nav-links.active {
-    display: flex;
-  }
-  
-  .auth-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    width: 100%;
-    margin-top: 20px;
-  }
-  
-  .login-btn, .signup-btn {
-    width: 100%;
-  }
-  
-  .hero-content {
-    justify-content: center;
-  }
-  
-  .motto-container {
-    width: 85%;
-    max-width: 450px;
-  }
-  
-  .motto-heading {
-    font-size: 40px;
-  }
-  
-  .motto-subheading {
-    font-size: 30px;
-  }
-  
-  .events-section, .members-section, .contact-section {
-    padding: 60px 20px;
-  }
-  
-  .members-container {
-    gap: 40px;
-  }
-  
-  .contact-info {
-    padding-right: 0;
-    margin-bottom: 40px;
-  }
-}
-
-@media (max-width: 576px) {
-  .navbar .logo span {
-    font-size: 18px;
-  }
-  
-  .navbar .logo img {
-    height: 40px;
-  }
-  
-  .motto-container {
-    width: 100%;
-    padding: 30px 20px;
-  }
-  
-  .motto-heading {
-    font-size: 32px;
-  }
-  
-  .motto-subheading {
-    font-size: 24px;
-  }
-  
-  .motto-text {
-    font-size: 16px;
-  }
-  
-  .section-heading h2 {
-    font-size: 2rem;
-  }
-  
-  .member-card {
-    width: 100%;
-    max-width: 280px;
-  }
-  
-  .footer-container {
-    flex-direction: column;
-  }
-  
-  .footer-logo, .footer-links, .footer-newsletter {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-}
-
 /* Back to Top Button */
 .back-to-top {
   position: fixed;
@@ -1844,16 +1834,15 @@ body, html {
   .nav-links {
     display: none;
     position: fixed;
-    top: 0;
+    top: 70px;
     left: 0;
     width: 100%;
-    height: 100vh;
-    background: rgba(10, 16, 51, 0.98);
-    padding: 80px 20px 20px;
+    background: var(--navy);
+    padding: 20px;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     z-index: 1000;
-    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
 
   .nav-links.active {
@@ -1865,12 +1854,16 @@ body, html {
     flex-direction: column;
     gap: 10px;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 10px;
   }
 
   .login-btn, .signup-btn {
     width: 100%;
     text-align: center;
+    padding: 12px 20px;
+    font-size: 16px;
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 

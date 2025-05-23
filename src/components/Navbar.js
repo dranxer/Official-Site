@@ -6,68 +6,61 @@ import useCurrentUser from "../hooks/useCurrentUser";
 import { useRouter } from "next/router";
 
 export default function Navbar({ activeSection, setActiveSection }) {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { user, loading } = useCurrentUser();
   const router = useRouter();
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-    // Prevent body scroll when menu is open
-    document.body.style.overflow = !menuOpen ? 'hidden' : 'unset';
-  };
-
-  // Close menu when route changes
   useEffect(() => {
-    const handleRouteChange = () => {
-      setMenuOpen(false);
-      document.body.style.overflow = 'unset';
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
     };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-    router.events.on('routeChangeStart', handleRouteChange);
-    return () => {
-      router.events.off('routeChangeStart', handleRouteChange);
-    };
-  }, [router]);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    document.body.style.overflow = !isMenuOpen ? 'hidden' : 'auto';
+  };
 
   const handleLogin = () => {
     router.push('/login');
-    setMenuOpen(false);
-    document.body.style.overflow = 'unset';
+    setIsMenuOpen(false);
   };
 
   const handleSignup = () => {
     router.push('/signup');
-    setMenuOpen(false);
-    document.body.style.overflow = 'unset';
+    setIsMenuOpen(false);
   };
 
   return (
-    <nav className="navbar">
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
       <div className="logo">
         <div className="circular-logo">
           <Image src="/think-india-logo.png" alt="Think India Logo" width={40} height={40} priority />
         </div>
         <span>Think India</span>
       </div>
-      <div className="mobile-menu-button" onClick={toggleMenu} role="button" tabIndex={0} aria-label="Toggle menu">
-        <div className={`menu-icon ${menuOpen ? "open" : ""}`}>
+      <div className={`mobile-menu-button ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+        <div className="menu-icon">
           <span></span>
           <span></span>
           <span></span>
         </div>
       </div>
-      <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
+      <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
         <li>
-          <Link href="/" className={activeSection === "home" ? "active" : ""} onClick={() => setMenuOpen(false)}>Home</Link>
+          <Link href="/" className={activeSection === "home" ? "active" : ""}>Home</Link>
         </li>
         <li>
-          <Link href="#about" className={activeSection === "about" ? "active" : ""} onClick={() => setMenuOpen(false)}>About</Link>
+          <Link href="#about" className={activeSection === "about" ? "active" : ""}>About</Link>
         </li>
         <li>
-          <Link href="/internships" onClick={() => setMenuOpen(false)}>Internships</Link>
+          <Link href="/internships">Internships</Link>
         </li>
         <li>
-          <Link href="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
+          <Link href="/blog">Blog</Link>
         </li>
         {["events", "team", "contact"].map((id) => (
           <li key={id}>
@@ -76,8 +69,7 @@ export default function Navbar({ activeSection, setActiveSection }) {
               className={activeSection === id ? "active" : ""}
               onClick={() => {
                 setActiveSection(id);
-                setMenuOpen(false);
-                document.body.style.overflow = 'unset';
+                setIsMenuOpen(false);
               }}
             >
               {id.charAt(0).toUpperCase() + id.slice(1)}
